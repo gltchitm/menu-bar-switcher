@@ -14,4 +14,4 @@ If you want to kill MenuBarSwitcher after it's been hidden, you can use the Acti
 To update the background image paths without quitting and reopening MenuBarSwitcher, you can send `SIGHUP` to the MenuBarSwitcher process (i.e. `killall -HUP MenuBarSwitcher`). This will *not* reopen the options menu. If you want to change the background images using this method, change the photos using the `defaults` command before sending `SIGHUP`.
 
 ## License
-[The Unlicense](https://choosealicense.com/licenses/unlicense/)
+[MIT License](LICENSE)
