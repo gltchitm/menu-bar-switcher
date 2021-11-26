@@ -276,7 +276,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = GL.MenuBarSwitcher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.gltchitm.MenuBarSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -294,7 +294,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = GL.MenuBarSwitcher;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.gltchitm.MenuBarSwitcher;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

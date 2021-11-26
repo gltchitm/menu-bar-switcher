@@ -1,10 +1,3 @@
-//
-//  AppDelegate.m
-//  MenuBarSwitcher
-//
-//  Created by gltchitm on 5/5/21.
-//
-
 #import "AppDelegate.h"
 #import <signal.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
@@ -16,10 +9,11 @@
 
 @end
 
+
 @implementation AppDelegate
 
-NSURL *desktopImageLocked;
-NSURL *desktopImageUnlocked;
+NSURL* desktopImageLocked;
+NSURL* desktopImageUnlocked;
 
 void hangup_handler(int signal) {
     reloadDesktopImagePaths();
@@ -40,7 +34,7 @@ void reloadDesktopImagePaths(void) {
         desktopImageUnlocked = [[NSUserDefaults standardUserDefaults] URLForKey:@"DesktopImageUnlocked"];
     }
 }
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification*)aNotification {
     reloadDesktopImagePaths();
     
     NSScreen *mainScreen = [NSScreen mainScreen];
@@ -65,7 +59,7 @@ void reloadDesktopImagePaths(void) {
     
     signal(SIGHUP, hangup_handler);
 }
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication*)sender {
     if ([NSApp isActive]) {
         [self runAlertWithMessageText:@"Quit MenuBarSwitcher"
                   withInformativeText:@"You must quit MenuBarSwitcher with the close button."
@@ -79,21 +73,21 @@ void reloadDesktopImagePaths(void) {
     [self setDesktopImageURL:self.originalDesktopImage];
 }
 
-- (NSModalResponse)runAlertWithMessageText:(NSString *)messageText
-                       withInformativeText:(NSString *)informativeText
-                          withButtonTitles:(NSArray *)buttonTitles {
+- (NSModalResponse)runAlertWithMessageText:(NSString*)messageText
+                       withInformativeText:(NSString*)informativeText
+                          withButtonTitles:(NSArray*)buttonTitles {
     NSAlert *alert = [[NSAlert alloc] init];
     alert.messageText = messageText;
     alert.informativeText = informativeText;
     alert.alertStyle = NSAlertStyleInformational;
-    for (NSString *title in buttonTitles) {
+    for (NSString* title in buttonTitles) {
         [alert addButtonWithTitle:title];
     }
     
     return [alert runModal];
 }
-- (NSURL *)runFileDialogWithDirectoryURL:(NSURL *)directoryURL {
-    NSOpenPanel *fileDialog = [NSOpenPanel openPanel];
+- (NSURL*)runFileDialogWithDirectoryURL:(NSURL*)directoryURL {
+    NSOpenPanel* fileDialog = [NSOpenPanel openPanel];
     [fileDialog setCanChooseFiles:TRUE];
     [fileDialog setCanChooseDirectories:FALSE];
     [fileDialog setAllowsOtherFileTypes:FALSE];
@@ -111,12 +105,12 @@ void reloadDesktopImagePaths(void) {
     return [fileDialog URLs][0];
 }
 
-- (void)windowWillClose:(NSNotification *)aNotification {
+- (void)windowWillClose:(NSNotification*)aNotification {
     if (![NSApp isActive] || aNotification.object != self.window) {
         return;
     }
     
-    NSString *hideOrExitInformativeText = @"Do you want to hide MenuBarSwitcher "
+    NSString* hideOrExitInformativeText = @"Do you want to hide MenuBarSwitcher "
         @"(close this configuration window but continue operating) or exit it "
         @"(close this configuration window and stop operation completely)?\n\n"
         @"All changes are already saved.";
@@ -125,7 +119,7 @@ void reloadDesktopImagePaths(void) {
                                               withButtonTitles:@[@"Hide", @"Exit"]];
     
     if (hideOrExit == NSAlertFirstButtonReturn) {
-        NSString *hideMenuBarSwitcherReopenMenuWarningText = @"You must kill MenuBarSwitcher "
+        NSString* hideMenuBarSwitcherReopenMenuWarningText = @"You must kill MenuBarSwitcher "
             @"through Activity Monitor and reopen it to regain access to this menu.\n\n"
             @"NOTE: You can also send SIGHUP to MenuBarSwitcher if you want to reload "
             @"background image paths without restarting the process. Doing this will NOT "
@@ -141,7 +135,7 @@ void reloadDesktopImagePaths(void) {
 }
 
 - (NSError*)setDesktopImageURL:(NSURL*)url {
-    NSError *error;
+    NSError* error;
     [[NSWorkspace sharedWorkspace] setDesktopImageURL:url
                                             forScreen:[NSScreen mainScreen]
                                               options:@{}
@@ -158,7 +152,7 @@ void reloadDesktopImagePaths(void) {
 }
 
 - (IBAction)unlockedImageSelect:(NSButton *)sender {
-    NSURL *url = [self runFileDialogWithDirectoryURL:desktopImageUnlocked];
+    NSURL* url = [self runFileDialogWithDirectoryURL:desktopImageUnlocked];
     
     if (url != nil) {
         desktopImageUnlocked = url;
@@ -170,8 +164,8 @@ void reloadDesktopImagePaths(void) {
                      withButtonTitles:@[@"OK"]];
     }
 }
-- (IBAction)lockedImageSelect:(NSButton *)sender {
-    NSURL *url = [self runFileDialogWithDirectoryURL:desktopImageLocked];
+- (IBAction)lockedImageSelect:(NSButton*)sender {
+    NSURL* url = [self runFileDialogWithDirectoryURL:desktopImageLocked];
     
     if (url != nil) {
         desktopImageLocked = url;
