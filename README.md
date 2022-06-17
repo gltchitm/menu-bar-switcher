@@ -1,5 +1,5 @@
 # MenuBarSwitcher
-MenuBarSwitcher is a macOS application for chaning the background image depending on a device's locked state.
+MenuBarSwitcher is a macOS application for changing the background image depending on a device's locked state.
 
 ## Usage
 Once opened, select background photos for both the locked and unlocked state. Once you've selected background photos, press the close button and choose "Hide."
